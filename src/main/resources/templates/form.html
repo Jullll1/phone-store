@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Форма товару</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${phone.id} != null ? 'Редагування запису' : 'Додавання нового запису'"></h1>
+
+<form th:action="@{/phones/save}" th:object="${phone}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Бренд:</label>
+    <input type="text" th:field="*{brand}" required/>
+
+    <label>Модель:</label>
+    <input type="text" th:field="*{model}" required/>
+
+    <label>Ціна:</label>
+    <input type="number" th:field="*{price}" step="0.01" required/>
+
+    <label>Кількість:</label>
+    <input type="number" th:field="*{quantity}" required/>
+
+    <button type="submit">Зберегти</button>
+</form>
+
+<a th:href="@{/phones}">← Повернутись до списку</a>
+</body>
+</html>
